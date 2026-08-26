@@ -1,0 +1,51 @@
+backend:
+  name: git-gateway
+  branch: main # change this to "master" if that's your repo's default branch
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "products"
+    label: "Products"
+    files:
+      - file: "content/products.json"
+        label: "Product Catalog"
+        name: "catalog"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.name}} — R {{fields.price}}"
+            fields:
+              - { label: "ID", name: "id", widget: "number", value_type: "int" }
+              - { label: "Name", name: "name", widget: "string" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["Women", "Men", "Kids", "Unisex", "Fabrics"]
+              - {
+                  label: "Price (ZAR)",
+                  name: "price",
+                  widget: "number",
+                  value_type: "float",
+                }
+              - { label: "Description", name: "description", widget: "text" }
+              - {
+                  label: "Image",
+                  name: "image",
+                  widget: "image",
+                  required: false,
+                }
+              - label: "Sizes & Stock"
+                name: "sizes"
+                widget: "list"
+                summary: "{{fields.size}}: {{fields.stock}} in stock"
+                fields:
+                  - { label: "Size", name: "size", widget: "string" }
+                  - {
+                      label: "Stock quantity",
+                      name: "stock",
+                      widget: "number",
+                      value_type: "int",
+                    }
