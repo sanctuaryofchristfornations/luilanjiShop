@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="LUBILANJI — contemporary African fashion, prints and materials.">
+<title>LUBILANJI — African Fashion Boutique</title>
+<style>
+:root{--terracotta:#a94d2f;--gold:#c99a32;--cream:#f7f0e4;--ink:#22231f;--green:#173b2c;--muted:#756f64;--line:#ded5c7;--white:#fffdf9;--danger:#a33}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+nav{position:sticky;top:0;z-index:20;background:#fffdf9ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:14px 5%}
+.logo{font-size:24px;color:var(--gold);letter-spacing:.12em;margin-right:auto;font-weight:900}
+nav button{border:0;background:none;font-size:14px;font-weight:700;color:var(--ink)}
+.nav-admin{color:var(--terracotta)}
+.hero{min-height:560px;padding:90px 7%;display:flex;align-items:center;background:linear-gradient(90deg,#161912ee,#16191277),linear-gradient(135deg,#173b2c,#a94d2f);color:#fff}
+.hero-inner{max-width:700px}.eyebrow{letter-spacing:.18em;text-transform:uppercase;color:#f0ca70;font-weight:800;font-size:13px}
+.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.03;margin:12px 0}.hero p{font-size:18px;line-height:1.7;max-width:620px}
+.cta{display:inline-block;background:var(--gold);color:#1d1a12;padding:13px 22px;border:0;font-weight:900;text-decoration:none}.secondary{background:#fff;color:var(--green);border:1px solid var(--green)}
+section{padding:50px 5%}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;flex-wrap:wrap}
+.filters{display:flex;gap:8px;flex-wrap:wrap}.filters input,.filters select{padding:11px;border:1px solid var(--line);background:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}.card{background:#fff;border:1px solid var(--line);overflow:hidden;box-shadow:0 4px 18px #00000009}
+.pic{aspect-ratio:4/5;background:linear-gradient(135deg,#ead7bc,#c47746);background-size:cover;background-position:center;display:flex;align-items:flex-end;justify-content:flex-start}
+.badge{background:var(--green);color:#fff;padding:6px 9px;font-size:11px;font-weight:800;margin:10px;text-transform:uppercase}
+.info{padding:15px}.info h3{margin:0 0 7px}.price{font-weight:900;font-size:18px}.muted{color:var(--muted);font-size:14px}.actions{display:flex;gap:8px;margin-top:12px}.actions button{flex:1;padding:10px;border:1px solid var(--green);background:#fff}.actions .primary{background:var(--green);color:#fff}
+.empty{text-align:center;padding:40px;background:#fff;border:1px dashed var(--line)}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature{background:#fff;padding:24px;border:1px solid var(--line)}.feature strong{display:block;margin-bottom:7px}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:50;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}
+.panel{background:var(--cream);max-width:720px;width:100%;max-height:90vh;overflow:auto;padding:28px;position:relative}.close{position:absolute;right:14px;top:10px;border:0;background:none;font-size:28px}
+.size-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}.size{padding:9px 13px;border:1px solid #aaa;background:#fff}.size.disabled{text-decoration:line-through;opacity:.4;cursor:not-allowed}
+.form{display:grid;gap:10px}.form input,.form select,.form textarea{padding:11px;border:1px solid #bbb;background:#fff}.form label{font-weight:700;font-size:13px}
+.total{font-size:19px;font-weight:900;margin:15px 0}.msg{padding:10px;background:#fff3cd;border:1px solid #e0c46b;margin-bottom:10px;display:none}.success{background:#e6f4ea;border-color:#9ac5a5}
+.order-row{padding:13px 0;border-bottom:1px solid var(--line)}.status{display:inline-block;padding:4px 8px;background:#eee;font-size:12px;font-weight:800;text-transform:uppercase}
+.admin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}.stat{background:#fff;padding:18px;border:1px solid var(--line)}.stat b{font-size:24px;display:block}
+.admin-product{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;background:#fff;padding:12px;border-bottom:1px solid var(--line)}
+footer{background:var(--green);color:#fff;padding:35px 5%;text-align:center;font-size:13px}
+@media(max-width:700px){nav{gap:7px}.logo{font-size:18px}nav button{font-size:11px}.hero{min-height:500px;padding:65px 7%}.features,.admin-grid{grid-template-columns:1fr}.admin-product{grid-template-columns:1fr}.panel{padding:22px 16px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">LUBILANJI</div>
+  <button onclick="openModal('trackModal')">Track Order</button>
+  <button onclick="openModal(currentUser?'accountModal':'authModal')">Account</button>
+  <button onclick="openModal('cartModal')">Cart (<span id="cartCount">0</span>)</button>
+  <button class="nav-admin" onclick="openAdmin()">Admin</button>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">African fashion • Prints • Materials</div>
+    <h1>Rooted in Culture.<br>Made for the World.</h1>
+    <p>Contemporary African fashion that celebrate the heritage elegance and identity</p>
+    <a class="cta" href="#shop">SHOP THE COLLECTION</a>
+  </div>
+</header>
+
+<section>
+  <div class="features">
+    <div class="feature"><strong>Payment on Delivery</strong><span class="muted">Pay when your order arrives.</span></div>
+    <div class="feature"><strong>Local</strong><span class="muted">Choose delivery or collection at checkout.</span></div>
+    <div class="feature"><strong>Order Tracking</strong><span class="muted">Save your order number and track its status.</span></div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="section-head">
+    <div><h2>Shop the collection</h2><p class="muted">Products, cart, customers and demo orders are saved in this browser.</p></div>
+    <div class="filters">
+      <input id="search" placeholder="Search products" oninput="renderProducts()">
+      <select id="category" onchange="renderProducts()">
+        <option value="">All categories</option><option>Women</option><option>Men</option><option>Kids</option><option>Unisex</option><option>Fabrics</option>
+      </select>
+    </div>
+  </div>
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<footer>© 2026 LUBILANJI. Payment on Delivery available. All rights reserved.</footer>
+
+<div class="modal" id="productModal"><div class="panel"><button class="close" onclick="closeModal('productModal')">×</button><div id="productDetail"></div></div></div>
+
+<div class="modal" id="cartModal"><div class="panel"><button class="close" onclick="closeModal('cartModal')">×</button><h2>Your Cart</h2><div id="cartItems"></div><div class="total" id="cartTotal"></div><button id="checkoutButton" class="cta" style="width:100%" onclick="closeModal('cartModal');openCheckout()">CHECKOUT — PAYMENT ON DELIVERY</button></div></div>
+
+<div class="modal" id="checkoutModal"><div class="panel"><button class="close" onclick="closeModal('checkoutModal')">×</button><h2>Checkout</h2><div class="msg" id="checkoutMsg"></div>
+  <div class="form">
+    <label>Full name<input id="coFullName" autocomplete="name"></label>
+    <label>Email<input id="coEmail" type="email" autocomplete="email"></label>
+    <label>Phone<input id="coPhone" autocomplete="tel"></label>
+    <label>Delivery type<select id="coDeliveryType" onchange="updateCheckoutTotal()"><option value="local">Local Delivery</option><option value="national">National Delivery</option><option value="international">International Shipping</option><option value="pickup">Pickup / Collection</option></select></label>
+    <label>Address<input id="coAddress" placeholder="Delivery address"></label>
+    <label>City<input id="coCity"></label><label>Province<input id="coProvince"></label><label>Postal code<input id="coPostal"></label>
+    <div style="background:#fff;border:1px solid var(--line);padding:12px;font-weight:700">Payment method: Payment on Delivery — pay the courier when your order arrives.</div>
+    <div class="total" id="checkoutTotal">Calculating…</div>
+    <button class="cta" onclick="placeOrder()">PLACE ORDER (PAYMENT ON DELIVERY)</button>
+  </div>
+</div></div>
+
+<div class="modal" id="trackModal"><div class="panel"><button class="close" onclick="closeModal('trackModal')">×</button><h2>Track Your Order</h2>
+  <div class="form"><label>Order number<input id="trackNumber" placeholder="e.g. LUB-123456"></label><label>Email or phone used at checkout<input id="trackContact"></label><button class="cta" onclick="trackOrder()">TRACK</button></div><div id="trackResult" style="margin-top:14px"></div>
+</div></div>
+
+<div class="modal" id="authModal"><div class="panel"><button class="close" onclick="closeModal('authModal')">×</button><h2>Account</h2>
+  <div class="form"><label>Full name (registration)<input id="authName"></label><label>Email<input id="authEmail" type="email"></label><label>Password<input id="authPassword" type="password" placeholder="8+ characters"></label>
+  <div style="display:flex;gap:8px"><button class="cta" style="flex:1" onclick="login()">LOG IN</button><button class="cta secondary" style="flex:1" onclick="register()">REGISTER</button></div><div id="authMsg" class="muted"></div></div>
+</div></div>
+
+<div class="modal" id="accountModal"><div class="panel"><button class="close" onclick="closeModal('accountModal')">×</button><h2>My Orders</h2><div id="myOrders"></div><button class="cta" style="margin-top:14px" onclick="logout()">LOG OUT</button></div></div>
+
+<div class="modal" id="adminLoginModal"><div class="panel"><button class="close" onclick="closeModal('adminLoginModal')">×</button><h2>Admin Access</h2><p class="muted">Enter the store admin password to continue.</p><div class="form"><input id="adminPassword" type="password" placeholder="Admin password"><button class="cta" onclick="loginAdmin()">ENTER ADMIN</button><div id="adminLoginMsg" class="muted"></div></div></div></div>
+
+<div class="modal" id="adminModal"><div class="panel" style="max-width:950px"><button class="close" onclick="closeModal('adminModal')">×</button><h2>Admin Dashboard</h2><div id="adminContent"></div></div></div>
+
+<script>
+const KEY='lubilanjistandalone_v1';
+const defaultProducts=[
+ {id:1,name:'Lubil anji Heritage Dress',category:'Women',price:1450,description:'A contemporary statement dress inspired by African pattern traditions.',sizes:[{size:'S',stock:5},{size:'M',stock:7},{size:'L',stock:4},{size:'XL',stock:2}],image:''},
+ {id:2,name:'Ubuntu Print Shirt',category:'Men',price:890,description:'Relaxed modern shirt with bold African-inspired print styling.',sizes:[{size:'S',stock:4},{size:'M',stock:8},{size:'L',stock:6},{size:'XL',stock:3}],image:''},
+ {id:3,name:'Lubil anji Kids Set',category:'Kids',price:590,description:'Comfortable matching set for everyday wear and special occasions.',sizes:[{size:'4',stock:5},{size:'6',stock:6},{size:'8',stock:4},{size:'10',stock:2}],image:''},
+ {id:4,name:'Heritage Unisex Jacket',category:'Unisex',price:1290,description:'Structured unisex jacket designed for versatile styling.',sizes:[{size:'S',stock:3},{size:'M',stock:5},{size:'L',stock:5},{size:'XL',stock:2}],image:''},
+ {id:5,name:'African Print Fabric — 6m',category:'Fabrics',price:720,description:'Six metres of vibrant print fabric for tailoring and creative projects.',sizes:[{size:'6m',stock:10}],image:''},
+ {id:6,name:'Kente-Inspired Wrap Skirt',category:'Women',price:980,description:'A flowing wrap silhouette with vibrant cultural-inspired detailing.',sizes:[{size:'S',stock:4},{size:'M',stock:6},{size:'L',stock:4}],image:''}
+];
+let state=JSON.parse(localStorage.getItem(KEY)||'null')||{products:defaultProducts,users:[],orders:[],cart:[],currentUser:null};
+let currentUser=state.currentUser;
+function persist(){state.currentUser=currentUser;localStorage.setItem(KEY,JSON.stringify(state));}
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const money=n=>'R '+Number(n||0).toLocaleString('en-ZA',{minimumFractionDigits:2,maximumFractionDigits:2});
+function openModal(id){document.getElementById(id).classList.add('open');if(id==='cartModal')renderCart();if(id==='accountModal')renderOrders();}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+function stockFor(p,size){return p.sizes.find(s=>s.size===size)?.stock||0}
+function renderProducts(){
+ const q=document.getElementById('search').value.trim().toLowerCase(),cat=document.getElementById('category').value;
+ const list=state.products.filter(p=>(!q||p.name.toLowerCase().includes(q)||p.description.toLowerCase().includes(q))&&(!cat||p.category===cat));
+ const grid=document.getElementById('productGrid');
+ if(!list.length){grid.innerHTML='<div class="empty">No products found.</div>';return}
+ grid.innerHTML=list.map(p=>`<article class="card"><div class="pic">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}" style="width:100%;height:100%;object-fit:cover">`:''}<span class="badge">${esc(p.category)}</span></div><div class="info"><h3>${esc(p.name)}</h3><div class="price">${money(p.price)}</div><p class="muted">${esc(p.description)}</p><div class="actions"><button class="primary" onclick="viewProduct(${p.id})">VIEW / BUY</button></div></div></article>`).join('');
+}
+function viewProduct(id){
+ const p=state.products.find(x=>x.id===id);if(!p)return;
+ document.getElementById('productDetail').innerHTML=`<h2>${esc(p.name)}</h2><div class="price">${money(p.price)}</div><p>${esc(p.description)}</p><h4>Choose size</h4><div class="size-row">${p.sizes.map(s=>`<button class="size ${s.stock<=0?'disabled':''}" ${s.stock<=0?'disabled':''} onclick="addToCart(${p.id},'${esc(s.size)}')">${esc(s.size)}${s.stock<=0?' — sold out':''}</button>`).join('')}</div><p class="muted">Available stock is shown per size.</p>`;
+ openModal('productModal');
+}
+function addToCart(productId,size){
+ const p=state.products.find(x=>x.id===productId),available=stockFor(p,size);if(!available)return;
+ const item=state.cart.find(x=>x.productId===productId&&x.size===size);
+ if(item){if(item.qty>=available){alert('You cannot add more than the available stock.');return}item.qty++}else state.cart.push({productId,size,qty:1});
+ persist();closeModal('productModal');renderCart();openModal('cartModal');
+}
+function renderCart(){
+ const el=document.getElementById('cartItems');
+ document.getElementById('cartCount').textContent=state.cart.reduce((a,x)=>a+x.qty,0);
+ if(!state.cart.length){el.innerHTML='<div class="empty">Your cart is empty.</div>';document.getElementById('cartTotal').textContent='';document.getElementById('checkoutButton').disabled=true;return}
+ document.getElementById('checkoutButton').disabled=false;let subtotal=0;
+ el.innerHTML=state.cart.map((x,i)=>{const p=state.products.find(y=>y.id===x.productId),line=(p?.price||0)*x.qty;subtotal+=line;return `<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)"><span><strong>${esc(p?.name||'Product')}</strong> (${esc(x.size)}) × ${x.qty}<br><button onclick="changeQty(${i},-1)">−</button> <button onclick="changeQty(${i},1)">+</button> <button onclick="removeCart(${i})">remove</button></span><strong>${money(line)}</strong></div>`}).join('');
+ document.getElementById('cartTotal').textContent='Subtotal: '+money(subtotal);
+}
+function changeQty(i,d){const item=state.cart[i],p=state.products.find(x=>x.id===item.productId),available=stockFor(p,item.size);item.qty+=d;if(item.qty<=0)state.cart.splice(i,1);else if(item.qty>available)item.qty=available;persist();renderCart()}
+function removeCart(i){state.cart.splice(i,1);persist();renderCart()}
+function subtotal(){return state.cart.reduce((sum,x)=>{const p=state.products.find(y=>y.id===x.productId);return sum+(p?.price||0)*x.qty},0)}
+function shipping(type){return ({local:80,national:140,international:650,pickup:0})[type]??140}
+function updateCheckoutTotal(){document.getElementById('checkoutTotal').textContent=`Subtotal ${money(subtotal())} + shipping ${money(shipping(document.getElementById('coDeliveryType').value))} = ${money(subtotal()+shipping(document.getElementById('coDeliveryType').value))}`}
+function openCheckout(){
+ if(!state.cart.length){alert('Your cart is empty.');return}
+ document.getElementById('checkoutMsg').style.display='none';
+ if(currentUser){coFullName.value=currentUser.name||'';coEmail.value=currentUser.email||'';coPhone.value=currentUser.phone||''}
+ openModal('checkoutModal');updateCheckoutTotal();
+}
+function validEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
+function placeOrder(){
+ const msg=document.getElementById('checkoutMsg'),name=coFullName.value.trim(),email=coEmail.value.trim(),phone=coPhone.value.trim(),type=coDeliveryType.value;
+ if(name.length<2||!validEmail(email)||phone.length<7){msg.textContent='Please enter a valid name, email and phone number.';msg.style.display='block';return}
+ if(type!=='pickup'&&!coAddress.value.trim()){msg.textContent='Please enter a delivery address.';msg.style.display='block';return}
+ for(const item of state.cart){const p=state.products.find(x=>x.id===item.productId);if(!p||stockFor(p,item.size)<item.qty){msg.textContent=`Sorry, ${p?.name||'a product'} no longer has enough stock.`;msg.style.display='block';return}}
+ const orderNo='LUB-'+Date.now().toString().slice(-8),sub=subtotal(),ship=shipping(type),order={order_number:orderNo,userId:currentUser?.id||null,customer:{name,email,phone,address:coAddress.value.trim(),city:coCity.value.trim(),province:coProvince.value.trim(),postal:coPostal.value.trim()},items:state.cart.map(x=>{const p=state.products.find(y=>y.id===x.productId);return {...x,name:p.name,price:p.price}}),subtotal:sub,shipping:ship,total:sub+ship,payment:'Payment on Delivery',deliveryType:type,status:'pending',created_at:new Date().toLocaleString(),events:[{event:'Order placed',detail:'Payment on Delivery order received.',time:new Date().toLocaleString()}]};
+ state.cart.forEach(x=>{const p=state.products.find(y=>y.id===x.productId);const v=p.sizes.find(s=>s.size===x.size);v.stock-=x.qty});
+ state.orders.unshift(order);state.cart=[];persist();
+ document.getElementById('checkoutModal').querySelector('.panel').innerHTML=`<button class="close" onclick="closeModal('checkoutModal')">×</button><h2>Order placed 🎉</h2><div class="msg success" style="display:block">Thank you, ${esc(name)}.</div><p>Order number: <strong>${esc(orderNo)}</strong></p><p>Total due on delivery: <strong>${money(order.total)}</strong></p><p>Keep your order number and use <b>Track Order</b> with the same email or phone.</p><button class="cta" onclick="closeModal('checkoutModal');renderProducts()">CONTINUE SHOPPING</button>`;
+ renderProducts();
+}
+function trackOrder(){
+ const no=trackNumber.value.trim().toUpperCase(),contact=trackContact.value.trim().toLowerCase();
+ const o=state.orders.find(x=>x.order_number===no&&(x.customer.email.toLowerCase()===contact||x.customer.phone===contact));
+ const el=document.getElementById('trackResult');
+ if(!o){el.innerHTML='<div class="msg" style="display:block">Order not found. Check the order number and contact details.</div>';return}
+ el.innerHTML=`<p><strong>Status:</strong> <span class="status">${esc(o.status)}</span></p><p><strong>Payment:</strong> ${esc(o.payment)}</p><p><strong>Total:</strong> ${money(o.total)}</p><p><strong>Delivery:</strong> ${esc(o.deliveryType)}</p><h4>History</h4>${o.events.map(e=>`<div class="order-row"><strong>${esc(e.event)}</strong><br><span class="muted">${esc(e.detail)} — ${esc(e.time)}</span></div>`).join('')}`;
+}
+function register(){
+ const name=authName.value.trim(),email=authEmail.value.trim().toLowerCase(),password=authPassword.value;
+ if(name.length<2||!validEmail(email)||password.length<8){authMsg.textContent='Enter a name, valid email and password of at least 8 characters.';return}
+ if(state.users.some(u=>u.email===email)){authMsg.textContent='An account with this email already exists.';return}
+ const user={id:Date.now(),name,email,password};state.users.push(user);currentUser={id:user.id,name,email};persist();authMsg.textContent='Registered successfully.';closeModal('authModal');
+}
+function login(){
+ const email=authEmail.value.trim().toLowerCase(),password=authPassword.value,user=state.users.find(u=>u.email===email&&u.password===password);
+ if(!user){authMsg.textContent='Incorrect email or password.';return}
+ currentUser={id:user.id,name:user.name,email:user.email};persist();closeModal('authModal');
+}
+function logout(){currentUser=null;persist();closeModal('accountModal');}
+function renderOrders(){
+ const el=document.getElementById('myOrders');if(!currentUser){el.innerHTML='Please log in.';return}
+ const orders=state.orders.filter(o=>o.userId===currentUser.id||o.customer.email===currentUser.email);
+ el.innerHTML=orders.length?orders.map(o=>`<div class="order-row"><strong>${esc(o.order_number)}</strong> — <span class="status">${esc(o.status)}</span> — ${money(o.total)}<br><span class="muted">${esc(o.created_at)}</span></div>`).join(''):'<p>No orders yet.</p>';
+}
+function openAdmin(){openModal('adminLoginModal')}
+function loginAdmin(){if(adminPassword.value==='Admin@2016'){closeModal('adminLoginModal');renderAdmin();openModal('adminModal')}else adminLoginMsg.textContent='Incorrect admin password.'}
+function renderAdmin(){
+ const orders=state.orders,revenue=orders.reduce((s,o)=>s+o.total,0),low=state.products.reduce((n,p)=>n+p.sizes.filter(s=>s.stock<=2).length,0);
+ document.getElementById('adminContent').innerHTML=`<div class="admin-grid"><div class="stat"><b>${state.products.length}</b>Products</div><div class="stat"><b>${orders.length}</b>Orders</div><div class="stat"><b>${money(revenue)}</b>Order value</div><div class="stat"><b>${low}</b>Low-stock sizes</div></div>
+ <h3>Orders</h3>${orders.length?orders.map((o,i)=>`<div class="order-row"><strong>${esc(o.order_number)}</strong> — ${esc(o.customer.name)} — ${money(o.total)}<select onchange="setOrderStatus(${i},this.value)" style="float:right"><option ${o.status==='pending'?'selected':''}>pending</option><option ${o.status==='confirmed'?'selected':''}>confirmed</option><option ${o.status==='shipped'?'selected':''}>shipped</option><option ${o.status==='delivered'?'selected':''}>delivered</option><option ${o.status==='cancelled'?'selected':''}>cancelled</option></select><br><span class="muted">${esc(o.customer.email)} · ${esc(o.created_at)}</span></div>`).join(''):'<p>No orders yet.</p>'}
+ <h3>Products & stock</h3>${state.products.map((p,i)=>`<div class="admin-product"><span><strong>${esc(p.name)}</strong><br><span class="muted">${esc(p.category)} · ${money(p.price)}</span></span><button onclick="editPrice(${i})">Edit price</button><button onclick="restock(${i})">Restock</button></div>`).join('')}`;
+}
+function setOrderStatus(i,status){
+ const o=state.orders[i],old=o.status;o.status=status;o.events.push({event:'Status updated',detail:`${old} → ${status}`,time:new Date().toLocaleString()});
+ if(status==='cancelled'&&old!=='cancelled'){o.items.forEach(item=>{const p=state.products.find(x=>x.id===item.productId),v=p?.sizes.find(s=>s.size===item.size);if(v)v.stock+=item.qty})}
+ persist();renderProducts();renderAdmin();
+}
+function editPrice(i){const p=state.products[i],v=prompt(`New price for ${p.name}`,p.price);if(v!==null&&Number(v)>0){p.price=Number(v);persist();renderProducts();renderAdmin()}}
+function restock(i){const p=state.products[i],amount=Number(prompt(`Add stock to all sizes of ${p.name}`,10));if(amount>0){p.sizes.forEach(s=>s.stock+=amount);persist();renderProducts();renderAdmin()}}
+renderProducts();renderCart();
+</script>
+</body>
+</html>
