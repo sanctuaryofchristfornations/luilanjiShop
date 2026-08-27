@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: sanctuaryofchristfornations/luilanjiShop # owner/repo-name
   branch: main # change this to "master" if that's your repo's default branch
 
 media_folder: "images/uploads"
