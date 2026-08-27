@@ -6,7 +6,7 @@
       "category": "Women",
       "price": 1450,
       "description": "A contemporary statement dress inspired by African pattern traditions.",
-      "image": "",
+      "image": "/images/uploads/dress2.jpg",
       "sizes": [
         {
           "size": "S",
@@ -32,7 +32,7 @@
       "category": "Men",
       "price": 890,
       "description": "Relaxed modern shirt with bold African-inspired print styling.",
-      "image": "",
+      "image": "/images/uploads/mensshirt.jpg",
       "sizes": [
         {
           "size": "S",
