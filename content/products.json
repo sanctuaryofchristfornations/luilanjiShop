@@ -79,6 +79,24 @@
       ]
     },
     {
+      "id": 10,
+      "name": "African Print Fabric — 6m",
+      "category": "Fabrics",
+      "price": 720,
+      "description": "Six metres of vibrant print fabric for tailoring and creative projects.",
+      "image": "/images/uploads/1000739343.jpg",
+      "sizes": [
+        {
+          "size": "6m",
+          "stock": 10
+        },
+        {
+          "size": "5 Yards ",
+          "stock": 10
+        }
+      ]
+    },
+    {
       "id": 4,
       "name": "Heritage Unisex Jacket",
       "category": "Unisex",
@@ -105,30 +123,12 @@
       ]
     },
     {
-      "id": 10,
-      "name": "African Print Fabric — 6m",
-      "category": "Fabrics",
-      "price": 720,
-      "description": "Six metres of vibrant print fabric for tailoring and creative projects.",
-      "image": "/images/uploads/1000739343.jpg",
-      "sizes": [
-        {
-          "size": "6m",
-          "stock": 10
-        },
-        {
-          "size": "5 Yards ",
-          "stock": 10
-        }
-      ]
-    },
-    {
       "id": 6,
       "name": "Kente-Inspired Wrap Skirt",
       "category": "Women",
       "price": 980,
       "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
-      "image": "/images/uploads/1000739347.jpg",
+      "image": "/images/uploads/1000739410.jpg",
       "sizes": [
         {
           "size": "S",
