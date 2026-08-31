@@ -105,15 +105,19 @@
       ]
     },
     {
-      "id": 5,
+      "id": 10,
       "name": "African Print Fabric — 6m",
       "category": "Fabrics",
       "price": 720,
       "description": "Six metres of vibrant print fabric for tailoring and creative projects.",
-      "image": "",
+      "image": "/images/uploads/1000739343.jpg",
       "sizes": [
         {
           "size": "6m",
+          "stock": 10
+        },
+        {
+          "size": "5 Yards ",
           "stock": 10
         }
       ]
