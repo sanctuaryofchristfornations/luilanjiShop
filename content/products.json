@@ -98,7 +98,7 @@
     },
     {
       "id": 6,
-      "name": "Kente-Inspired Wrap Skirt",
+      "name": "Kente-Inspired Wrap Skirt 1",
       "category": "Women",
       "price": 980,
       "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
@@ -159,6 +159,22 @@
       "id": 8,
       "price": 1290,
       "image": "/images/uploads/jacketyellow.jpg"
+    },
+    {
+      "name": "Kente-Inspired Wrap Skirt 2",
+      "image": "/images/uploads/wrapgreen.jpg",
+      "id": 11,
+      "category": "Women",
+      "price": 980,
+      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing."
+    },
+    {
+      "name": "Kente-Inspired Wrap Skirt 3",
+      "image": "/images/uploads/wrap3.jpg",
+      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
+      "price": 980,
+      "id": 12,
+      "category": "Women"
     }
   ]
 }
