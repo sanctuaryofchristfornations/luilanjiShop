@@ -97,8 +97,30 @@
       ]
     },
     {
+      "id": 6,
+      "name": "Kente-Inspired Wrap Skirt",
+      "category": "Women",
+      "price": 980,
+      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
+      "image": "/images/uploads/1000739410.jpg",
+      "sizes": [
+        {
+          "size": "S",
+          "stock": 4
+        },
+        {
+          "size": "M",
+          "stock": 6
+        },
+        {
+          "size": "L",
+          "stock": 4
+        }
+      ]
+    },
+    {
       "id": 4,
-      "name": "Heritage Unisex Jacket",
+      "name": "Heritage Unisex Jacket 1",
       "category": "Unisex",
       "price": 1290,
       "description": "Structured unisex jacket designed for versatile styling.",
@@ -123,26 +145,19 @@
       ]
     },
     {
-      "id": 6,
-      "name": "Kente-Inspired Wrap Skirt",
-      "category": "Women",
-      "price": 980,
-      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
-      "image": "/images/uploads/1000739410.jpg",
-      "sizes": [
-        {
-          "size": "S",
-          "stock": 4
-        },
-        {
-          "size": "M",
-          "stock": 6
-        },
-        {
-          "size": "L",
-          "stock": 4
-        }
-      ]
+      "name": "Heritage Unisex Jacket 2 ",
+      "category": "Unisex",
+      "price": 1290,
+      "image": "/images/uploads/1000739267.jpg",
+      "id": 7,
+      "description": "Heritage Unisex Jacket 2 "
+    },
+    {
+      "name": "Heritage Unisex Jacket  3",
+      "description": "Heritage Unisex Jacket 2 ",
+      "category": "Unisex",
+      "id": 8,
+      "price": 1290
     }
   ]
 }
