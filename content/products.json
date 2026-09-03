@@ -157,7 +157,8 @@
       "description": "Heritage Unisex Jacket 2 ",
       "category": "Unisex",
       "id": 8,
-      "price": 1290
+      "price": 1290,
+      "image": "/images/uploads/jacketyellow.jpg"
     }
   ]
 }
