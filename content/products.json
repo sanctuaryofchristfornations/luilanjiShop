@@ -97,6 +97,14 @@
       ]
     },
     {
+      "name": "African Print Fabric — 6m",
+      "category": "Fabrics",
+      "id": 14,
+      "price": 720,
+      "description": "African Print Fabric — 6m",
+      "image": "/images/uploads/fabrics2.jpg"
+    },
+    {
       "id": 6,
       "name": "Kente-Inspired Wrap Skirt 1",
       "category": "Women",
@@ -177,12 +185,20 @@
       "image": "/images/uploads/jacketyellow.jpg"
     },
     {
-      "name": "African Print Fabric — 6m",
-      "category": "Fabrics",
-      "id": 14,
-      "price": 720,
-      "description": "African Print Fabric — 6m",
-      "image": "/images/uploads/fabrics2.jpg"
+      "name": "Kente-Inspired Wrap Skirt 4 — R 980",
+      "price": 980,
+      "description": "Kente-Inspired Wrap Skirt ",
+      "category": "Women",
+      "id": 16,
+      "image": "/images/uploads/img-20260831-wa0006.jpg"
+    },
+    {
+      "name": "Kente-Inspired Wrap Skirt 5 — R 980",
+      "category": "Women",
+      "price": 980,
+      "description": "Kente-Inspired Wrap Skirt ",
+      "id": 15,
+      "image": "/images/uploads/img-20260831-wa0005.jpg"
     }
   ]
 }
