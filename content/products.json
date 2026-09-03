@@ -53,6 +53,32 @@
       ]
     },
     {
+      "id": 10,
+      "name": "African Print Fabric — 6m",
+      "category": "Fabrics",
+      "price": 720,
+      "description": "Six metres of vibrant print fabric for tailoring and creative projects.",
+      "image": "/images/uploads/1000739343.jpg",
+      "sizes": [
+        {
+          "size": "6m",
+          "stock": 10
+        },
+        {
+          "size": "5 Yards ",
+          "stock": 10
+        }
+      ]
+    },
+    {
+      "name": "African Print Fabric — 6m",
+      "category": "Fabrics",
+      "id": 17,
+      "price": 720,
+      "description": "African Print Fabric — 6m",
+      "image": "/images/uploads/fabrics1.jpg"
+    },
+    {
       "id": 3,
       "name": "Lubilanji Kids Set",
       "category": "Kids",
@@ -75,24 +101,6 @@
         {
           "size": "10",
           "stock": 2
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "name": "African Print Fabric — 6m",
-      "category": "Fabrics",
-      "price": 720,
-      "description": "Six metres of vibrant print fabric for tailoring and creative projects.",
-      "image": "/images/uploads/1000739343.jpg",
-      "sizes": [
-        {
-          "size": "6m",
-          "stock": 10
-        },
-        {
-          "size": "5 Yards ",
-          "stock": 10
         }
       ]
     },
@@ -134,7 +142,7 @@
       "category": "Women",
       "price": 980,
       "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
-      "image": "/images/uploads/1000739410.jpg",
+      "image": "/images/uploads/wrap5.jpg",
       "sizes": [
         {
           "size": "S",
