@@ -2,6 +2,8 @@ backend:
   name: github
   repo: sanctuaryofchristfornations/luilanjiShop # owner/repo-name
   branch: main # change this to "master" if that's your repo's default branch
+  base_url: https://sveltia-cms-auth.sanctuaryofchristfornations-097.workers.dev
+
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"

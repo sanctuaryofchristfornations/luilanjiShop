@@ -6,7 +6,7 @@
       "category": "Women",
       "price": 1450,
       "description": "A contemporary statement dress inspired by African pattern traditions.",
-      "image": "/images/uploads/dress2.jpg",
+      "image": "/images/uploads/reddress.jpg",
       "sizes": [
         {
           "size": "S",
@@ -32,7 +32,7 @@
       "category": "Men",
       "price": 890,
       "description": "Relaxed modern shirt with bold African-inspired print styling.",
-      "image": "/images/uploads/mensshirt.jpg",
+      "image": "/images/uploads/shirt2.jpg",
       "sizes": [
         {
           "size": "S",
@@ -53,12 +53,38 @@
       ]
     },
     {
+      "id": 10,
+      "name": "African Print Fabric — 6m",
+      "category": "Fabrics",
+      "price": 720,
+      "description": "Six metres of vibrant print fabric for tailoring and creative projects.",
+      "image": "/images/uploads/1000739343.jpg",
+      "sizes": [
+        {
+          "size": "6m",
+          "stock": 10
+        },
+        {
+          "size": "5 Yards ",
+          "stock": 10
+        }
+      ]
+    },
+    {
+      "name": "African Print Fabric — 6m",
+      "category": "Fabrics",
+      "id": 17,
+      "price": 720,
+      "description": "African Print Fabric — 6m",
+      "image": "/images/uploads/fabrics.jpg"
+    },
+    {
       "id": 3,
       "name": "Lubilanji Kids Set",
       "category": "Kids",
       "price": 590,
       "description": "Comfortable matching set for everyday wear and special occasions.",
-      "image": "",
+      "image": "/images/uploads/kids.jpg",
       "sizes": [
         {
           "size": "4",
@@ -79,12 +105,66 @@
       ]
     },
     {
+      "name": "Kente-Inspired Wrap Skirt 1 ",
+      "category": "Women",
+      "price": 980,
+      "description": "Kente-Inspired Wrap Skirt ",
+      "id": 15,
+      "image": "/images/uploads/img-20260831-wa0005.jpg"
+    },
+    {
+      "name": "Kente-Inspired Wrap Skirt 2",
+      "image": "/images/uploads/wraplong2.jpg",
+      "id": 11,
+      "category": "Women",
+      "price": 980,
+      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing."
+    },
+    {
+      "name": "Kente-Inspired Wrap Skirt 3",
+      "image": "/images/uploads/wrapgreen.jpg",
+      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
+      "price": 980,
+      "id": 12,
+      "category": "Women"
+    },
+    {
+      "name": "Kente-Inspired Wrap Skirt 4 ",
+      "price": 980,
+      "description": "Kente-Inspired Wrap Skirt ",
+      "category": "Women",
+      "id": 16,
+      "image": "/images/uploads/img-20260831-wa0006.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Kente-Inspired Wrap Skirt 5",
+      "category": "Women",
+      "price": 980,
+      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
+      "image": "/images/uploads/wrap5.jpg",
+      "sizes": [
+        {
+          "size": "S",
+          "stock": 4
+        },
+        {
+          "size": "M",
+          "stock": 6
+        },
+        {
+          "size": "L",
+          "stock": 4
+        }
+      ]
+    },
+    {
       "id": 4,
-      "name": "Heritage Unisex Jacket",
+      "name": "Heritage Unisex Jacket 1",
       "category": "Unisex",
       "price": 1290,
       "description": "Structured unisex jacket designed for versatile styling.",
-      "image": "",
+      "image": "/images/uploads/1000739269.jpg",
       "sizes": [
         {
           "size": "S",
@@ -105,40 +185,20 @@
       ]
     },
     {
-      "id": 5,
-      "name": "African Print Fabric — 6m",
-      "category": "Fabrics",
-      "price": 720,
-      "description": "Six metres of vibrant print fabric for tailoring and creative projects.",
-      "image": "",
-      "sizes": [
-        {
-          "size": "6m",
-          "stock": 10
-        }
-      ]
+      "name": "Heritage Unisex Jacket 2 ",
+      "category": "Unisex",
+      "price": 1290,
+      "image": "/images/uploads/1000739267.jpg",
+      "id": 7,
+      "description": "Heritage Unisex Jacket 2 "
     },
     {
-      "id": 6,
-      "name": "Kente-Inspired Wrap Skirt",
-      "category": "Women",
-      "price": 980,
-      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
-      "image": "",
-      "sizes": [
-        {
-          "size": "S",
-          "stock": 4
-        },
-        {
-          "size": "M",
-          "stock": 6
-        },
-        {
-          "size": "L",
-          "stock": 4
-        }
-      ]
+      "name": "Heritage Unisex Jacket  3",
+      "description": "Heritage Unisex Jacket 2 ",
+      "category": "Unisex",
+      "id": 8,
+      "price": 1290,
+      "image": "/images/uploads/jacketyellow.jpg"
     }
   ]
 }
