@@ -44,7 +44,7 @@ footer{background:var(--green);color:#fff;padding:35px 5%;text-align:center;font
   <button onclick="openModal('trackModal')">Track Order</button>
   <button onclick="openModal(currentUser?'accountModal':'authModal')">Account</button>
   <button onclick="openModal('cartModal')">Cart (<span id="cartCount">0</span>)</button>
-  <button class="nav-admin" onclick="openAdmin()">Admin</button>
+ 
 </nav>
 
 <header class="hero">
@@ -108,9 +108,7 @@ footer{background:var(--green);color:#fff;padding:35px 5%;text-align:center;font
 
 <div class="modal" id="accountModal"><div class="panel"><button class="close" onclick="closeModal('accountModal')">×</button><h2>My Orders</h2><div id="myOrders"></div><button class="cta" style="margin-top:14px" onclick="logout()">LOG OUT</button></div></div>
 
-<div class="modal" id="adminLoginModal"><div class="panel"><button class="close" onclick="closeModal('adminLoginModal')">×</button><h2>Admin Access</h2><p class="muted">Enter the store admin password to continue.</p><div class="form"><input id="adminPassword" type="password" placeholder="Admin password"><button class="cta" onclick="loginAdmin()">ENTER ADMIN</button><div id="adminLoginMsg" class="muted"></div></div></div></div>
 
-<div class="modal" id="adminModal"><div class="panel" style="max-width:950px"><button class="close" onclick="closeModal('adminModal')">×</button><h2>Admin Dashboard</h2><div id="adminContent"></div></div></div>
 
 <script>
 const KEY='lubilanjistandalone_v1';
@@ -180,24 +178,53 @@ function openCheckout(){
  openModal('checkoutModal');updateCheckoutTotal();
 }
 function validEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
-function placeOrder(){
+
+const ORDERS_API = 'https://lubilanji-orders-api.sanctuaryofchristfornations-097.workers.dev';
+
+async function placeOrder(){
  const msg=document.getElementById('checkoutMsg'),name=coFullName.value.trim(),email=coEmail.value.trim(),phone=coPhone.value.trim(),type=coDeliveryType.value;
  if(name.length<2||!validEmail(email)||phone.length<7){msg.textContent='Please enter a valid name, email and phone number.';msg.style.display='block';return}
  if(type!=='pickup'&&!coAddress.value.trim()){msg.textContent='Please enter a delivery address.';msg.style.display='block';return}
  for(const item of state.cart){const p=state.products.find(x=>x.id===item.productId);if(!p||stockFor(p,item.size)<item.qty){msg.textContent=`Sorry, ${p?.name||'a product'} no longer has enough stock.`;msg.style.display='block';return}}
- const orderNo='LUB-'+Date.now().toString().slice(-8),sub=subtotal(),ship=shipping(type),order={order_number:orderNo,userId:currentUser?.id||null,customer:{name,email,phone,address:coAddress.value.trim(),city:coCity.value.trim(),province:coProvince.value.trim(),postal:coPostal.value.trim()},items:state.cart.map(x=>{const p=state.products.find(y=>y.id===x.productId);return {...x,name:p.name,price:p.price}}),subtotal:sub,shipping:ship,total:sub+ship,payment:'Payment on Delivery',deliveryType:type,status:'pending',created_at:new Date().toLocaleString(),events:[{event:'Order placed',detail:'Payment on Delivery order received.',time:new Date().toLocaleString()}]};
- state.cart.forEach(x=>{const p=state.products.find(y=>y.id===x.productId);const v=p.sizes.find(s=>s.size===x.size);v.stock-=x.qty});
- state.orders.unshift(order);state.cart=[];persist();
- document.getElementById('checkoutModal').querySelector('.panel').innerHTML=`<button class="close" onclick="closeModal('checkoutModal')">×</button><h2>Order placed 🎉</h2><div class="msg success" style="display:block">Thank you, ${esc(name)}.</div><p>Order number: <strong>${esc(orderNo)}</strong></p><p>Total due on delivery: <strong>${money(order.total)}</strong></p><p>Keep your order number and use <b>Track Order</b> with the same email or phone.</p><button class="cta" onclick="closeModal('checkoutModal');renderProducts()">CONTINUE SHOPPING</button>`;
+ const sub=subtotal(),ship=shipping(type),orderPayload={customer:{name,email,phone,address:coAddress.value.trim(),city:coCity.value.trim(),province:coProvince.value.trim(),postal:coPostal.value.trim()},items:state.cart.map(x=>{const p=state.products.find(y=>y.id===x.productId);return {...x,name:p.name,price:p.price}}),subtotal:sub,shipping:ship,total:sub+ship,deliveryType:type};
+
+ msg.style.display='none';
+ let result;
+ try{
+   const res=await fetch(ORDERS_API+'/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(orderPayload)});
+   result=await res.json();
+   if(!result.ok) throw new Error(result.message||'Order could not be saved');
+ }catch(e){
+   msg.textContent='Sorry, something went wrong saving your order. Please try again.';msg.style.display='block';return;
+ }
+
+ state.cart.forEach(x=>{const p=state.products.find(y=>y.id===x.productId);const v=p.sizes.find(s=>s.size===x.size);if(v)v.stock-=x.qty});
+ state.cart=[];persist();
+
+ document.getElementById('checkoutModal').querySelector('.panel').innerHTML=`<button class="close" onclick="closeModal('checkoutModal')">×</button><h2>Order placed 🎉</h2><div class="msg success" style="display:block">Thank you, ${esc(name)}.</div><p>Order number: <strong>${esc(result.order_number)}</strong></p><p>Total due on delivery: <strong>${money(orderPayload.total)}</strong></p><p>Keep your order number and use <b>Track Order</b> with the same email or phone.</p><button class="cta" onclick="closeModal('checkoutModal');renderProducts()">CONTINUE SHOPPING</button>`;
  renderProducts();
 }
-function trackOrder(){
+
+async function trackOrder(){
  const no=trackNumber.value.trim().toUpperCase(),contact=trackContact.value.trim().toLowerCase();
- const o=state.orders.find(x=>x.order_number===no&&(x.customer.email.toLowerCase()===contact||x.customer.phone===contact));
  const el=document.getElementById('trackResult');
- if(!o){el.innerHTML='<div class="msg" style="display:block">Order not found. Check the order number and contact details.</div>';return}
- el.innerHTML=`<p><strong>Status:</strong> <span class="status">${esc(o.status)}</span></p><p><strong>Payment:</strong> ${esc(o.payment)}</p><p><strong>Total:</strong> ${money(o.total)}</p><p><strong>Delivery:</strong> ${esc(o.deliveryType)}</p><h4>History</h4>${o.events.map(e=>`<div class="order-row"><strong>${esc(e.event)}</strong><br><span class="muted">${esc(e.detail)} — ${esc(e.time)}</span></div>`).join('')}`;
+ el.innerHTML='<p class="muted">Looking up your order…</p>';
+
+ let data;
+ try{
+   const res=await fetch(`${ORDERS_API}/orders/track?order_number=${encodeURIComponent(no)}&contact=${encodeURIComponent(contact)}`);
+   data=await res.json();
+ }catch(e){
+   el.innerHTML='<div class="msg" style="display:block">Something went wrong looking up your order. Please try again.</div>';return;
+ }
+
+ if(!data.ok){
+   el.innerHTML='<div class="msg" style="display:block">Order not found. Check the order number and contact details.</div>';return;
+ }
+ const o=data.order,items=JSON.parse(o.items);
+ el.innerHTML=`<p><strong>Status:</strong> <span class="status">${esc(o.status)}</span></p><p><strong>Total:</strong> ${money(o.total)}</p><p><strong>Delivery:</strong> ${esc(o.delivery_type)}</p><h4>Items</h4>${items.map(i=>`<div class="order-row">${esc(i.name)} (${esc(i.size)}) × ${i.qty}</div>`).join('')}<p class="muted">Order placed: ${esc(new Date(o.created_at).toLocaleString())}</p>`;
 }
+
 function register(){
  const name=authName.value.trim(),email=authEmail.value.trim().toLowerCase(),password=authPassword.value;
  if(name.length<2||!validEmail(email)||password.length<8){authMsg.textContent='Enter a name, valid email and password of at least 8 characters.';return}
@@ -215,21 +242,7 @@ function renderOrders(){
  const orders=state.orders.filter(o=>o.userId===currentUser.id||o.customer.email===currentUser.email);
  el.innerHTML=orders.length?orders.map(o=>`<div class="order-row"><strong>${esc(o.order_number)}</strong> — <span class="status">${esc(o.status)}</span> — ${money(o.total)}<br><span class="muted">${esc(o.created_at)}</span></div>`).join(''):'<p>No orders yet.</p>';
 }
-function openAdmin(){openModal('adminLoginModal')}
-function loginAdmin(){if(adminPassword.value==='Admin@2016'){closeModal('adminLoginModal');renderAdmin();openModal('adminModal')}else adminLoginMsg.textContent='Incorrect admin password.'}
-function renderAdmin(){
- const orders=state.orders,revenue=orders.reduce((s,o)=>s+o.total,0),low=state.products.reduce((n,p)=>n+p.sizes.filter(s=>s.stock<=2).length,0);
- document.getElementById('adminContent').innerHTML=`<div class="admin-grid"><div class="stat"><b>${state.products.length}</b>Products</div><div class="stat"><b>${orders.length}</b>Orders</div><div class="stat"><b>${money(revenue)}</b>Order value</div><div class="stat"><b>${low}</b>Low-stock sizes</div></div>
- <h3>Orders</h3>${orders.length?orders.map((o,i)=>`<div class="order-row"><strong>${esc(o.order_number)}</strong> — ${esc(o.customer.name)} — ${money(o.total)}<select onchange="setOrderStatus(${i},this.value)" style="float:right"><option ${o.status==='pending'?'selected':''}>pending</option><option ${o.status==='confirmed'?'selected':''}>confirmed</option><option ${o.status==='shipped'?'selected':''}>shipped</option><option ${o.status==='delivered'?'selected':''}>delivered</option><option ${o.status==='cancelled'?'selected':''}>cancelled</option></select><br><span class="muted">${esc(o.customer.email)} · ${esc(o.created_at)}</span></div>`).join(''):'<p>No orders yet.</p>'}
- <h3>Products & stock</h3>${state.products.map((p,i)=>`<div class="admin-product"><span><strong>${esc(p.name)}</strong><br><span class="muted">${esc(p.category)} · ${money(p.price)}</span></span><button onclick="editPrice(${i})">Edit price</button><button onclick="restock(${i})">Restock</button></div>`).join('')}`;
-}
-function setOrderStatus(i,status){
- const o=state.orders[i],old=o.status;o.status=status;o.events.push({event:'Status updated',detail:`${old} → ${status}`,time:new Date().toLocaleString()});
- if(status==='cancelled'&&old!=='cancelled'){o.items.forEach(item=>{const p=state.products.find(x=>x.id===item.productId),v=p?.sizes.find(s=>s.size===item.size);if(v)v.stock+=item.qty})}
- persist();renderProducts();renderAdmin();
-}
-function editPrice(i){const p=state.products[i],v=prompt(`New price for ${p.name}`,p.price);if(v!==null&&Number(v)>0){p.price=Number(v);persist();renderProducts();renderAdmin()}}
-function restock(i){const p=state.products[i],amount=Number(prompt(`Add stock to all sizes of ${p.name}`,10));if(amount>0){p.sizes.forEach(s=>s.stock+=amount);persist();renderProducts();renderAdmin()}}
+
 
 loadProductsFromCMS();
 

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LUBILANJI — Admin Dashboard</title>
+<style>
+:root{--terracotta:#a94d2f;--gold:#c99a32;--cream:#f7f0e4;--ink:#22231f;--green:#173b2c;--muted:#756f64;--line:#ded5c7}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);padding:24px}
+h1{color:var(--terracotta)}
+.form{max-width:340px;display:grid;gap:10px;margin-top:60px auto;background:#fff;padding:24px;border:1px solid var(--line)}
+.form input{padding:11px;border:1px solid #bbb}
+.cta{background:var(--gold);color:#1d1a12;border:0;padding:12px;font-weight:900;cursor:pointer}
+.admin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.stat{background:#fff;padding:18px;border:1px solid var(--line)}.stat b{font-size:24px;display:block}
+.order-row{padding:13px;border:1px solid var(--line);background:#fff;margin-bottom:8px}
+.status{display:inline-block;padding:4px 8px;background:#eee;font-size:12px;font-weight:800;text-transform:uppercase}
+.muted{color:var(--muted);font-size:13px}
+select{padding:6px;float:right}
+@media(max-width:700px){.admin-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div id="loginBox" class="form">
+  <h1>Admin Login</h1>
+  <input id="pw" type="password" placeholder="Admin password">
+  <button class="cta" onclick="login()">ENTER</button>
+  <div id="loginMsg" class="muted"></div>
+</div>
+
+<div id="dashboard" style="display:none">
+  <h1>LUBILANJI — Admin Dashboard</h1>
+  <div class="admin-grid" id="stats"></div>
+  <h2>Orders</h2>
+  <div id="orders"></div>
+</div>
+
+<script>
+const ORDERS_API = 'https://lubilanji-orders-api.sanctuaryofchristfornations-097.workers.dev';
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const money=n=>'R '+Number(n||0).toLocaleString('en-ZA',{minimumFractionDigits:2,maximumFractionDigits:2});
+let adminPassword='';
+
+function login(){
+  adminPassword=document.getElementById('pw').value;
+  loadOrders();
+}
+
+async function loadOrders(){
+  const res=await fetch(ORDERS_API+'/orders',{headers:{'X-Admin-Password':adminPassword}});
+  if(res.status===401){document.getElementById('loginMsg').textContent='Incorrect password.';return;}
+  const data=await res.json();
+  document.getElementById('loginBox').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+  renderDashboard(data.orders);
+}
+
+function renderDashboard(orders){
+  const revenue=orders.reduce((s,o)=>s+o.total,0);
+  document.getElementById('stats').innerHTML=`
+    <div class="stat"><b>${orders.length}</b>Orders</div>
+    <div class="stat"><b>${money(revenue)}</b>Total value</div>
+    <div class="stat"><b>${orders.filter(o=>o.status==='pending').length}</b>Pending</div>
+    <div class="stat"><b>${orders.filter(o=>o.status==='delivered').length}</b>Delivered</div>`;
+
+  document.getElementById('orders').innerHTML = orders.length ? orders.map(o=>{
+    const items=JSON.parse(o.items);
+    return `<div class="order-row">
+      <strong>${esc(o.order_number)}</strong> — ${esc(o.customer_name)} — ${money(o.total)}
+      <select onchange="setStatus('${esc(o.order_number)}',this.value)">
+        ${['pending','confirmed','shipped','delivered','cancelled'].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join('')}
+      </select>
+      <br><span class="muted">${esc(o.customer_email)} · ${esc(o.customer_phone)} · ${esc(new Date(o.created_at).toLocaleString())}</span>
+      <br><span class="muted">${items.map(i=>`${esc(i.name)} (${esc(i.size)}) ×${i.qty}`).join(', ')}</span>
+    </div>`;
+  }).join('') : '<p class="muted">No orders yet.</p>';
+}
+
+async function setStatus(orderNumber,status){
+  await fetch(ORDERS_API+'/orders/'+encodeURIComponent(orderNumber),{
+    method:'PATCH',
+    headers:{'Content-Type':'application/json','X-Admin-Password':adminPassword},
+    body:JSON.stringify({status})
+  });
+  loadOrders();
+}
+</script>
+</body>
+</html>
