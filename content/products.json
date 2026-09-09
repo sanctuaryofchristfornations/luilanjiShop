@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Lubilanji Heritage Dress",
       "category": "Women",
-      "price": 1800,
+      "price": 2899.99,
       "description": "A contemporary statement dress inspired by African pattern traditions.",
       "image": "/images/uploads/reddress.jpg",
       "sizes": [
@@ -48,7 +48,7 @@
       "id": 10,
       "name": "African Print Fabric — 6m",
       "category": "Fabrics",
-      "price": 800,
+      "price": 799.9,
       "description": "Six metres of vibrant print fabric for tailoring and creative projects.",
       "image": "/images/uploads/1000739343.jpg",
       "sizes": [
@@ -66,7 +66,7 @@
       "name": "African Print Fabric — 6m",
       "category": "Fabrics",
       "id": 17,
-      "price": 800,
+      "price": 799.9,
       "description": "African Print Fabric — 6m",
       "image": "/images/uploads/fabrics.jpg"
     },
@@ -99,7 +99,7 @@
     {
       "name": "Kente-Inspired Wrap Skirt 1 ",
       "category": "Women",
-      "price": 500,
+      "price": 499.99,
       "description": "Kente-Inspired Wrap Skirt \n\nAfrican Print Notice:\nDue to fabric availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
       "id": 15,
       "image": "/images/uploads/img-20260831-wa0005.jpg",
@@ -115,20 +115,20 @@
       "image": "/images/uploads/wraplong2.jpg",
       "id": 11,
       "category": "Women",
-      "price": 500,
+      "price": 499.99,
       "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing."
     },
     {
       "name": "Kente-Inspired Wrap Skirt 3",
       "image": "/images/uploads/wrapgreen.jpg",
       "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.\n\nAfrican Print Notice:\nDue to fabric availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
-      "price": 500,
+      "price": 499.99,
       "id": 12,
       "category": "Women"
     },
     {
       "name": "Kente-Inspired Wrap Skirt 4 ",
-      "price": 500,
+      "price": 499.99,
       "description": "Kente-Inspired Wrap Skirt ",
       "category": "Women",
       "id": 16,
@@ -138,7 +138,7 @@
       "id": 6,
       "name": "Kente-Inspired Wrap Skirt 5",
       "category": "Women",
-      "price": 500,
+      "price": 499.99,
       "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.\n\nAfrican Print Notice:\nDue to fabric availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
       "image": "/images/uploads/wrap5.jpg",
       "sizes": [
@@ -156,7 +156,7 @@
       "id": 4,
       "name": "Heritage Unisex Jacket 1",
       "category": "Unisex",
-      "price": 850,
+      "price": 849.99,
       "description": "Structured unisex jacket designed for versatile styling.\n\nAfrican Print Notice:\nDue to fabric availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
       "image": "/images/uploads/1000739269.jpg",
       "sizes": [
@@ -181,7 +181,7 @@
     {
       "name": "Heritage Unisex Jacket 2 ",
       "category": "Unisex",
-      "price": 850,
+      "price": 849.99,
       "image": "/images/uploads/1000739267.jpg",
       "id": 7,
       "description": "Heritage Unisex Jacket 2 "
@@ -191,14 +191,14 @@
       "description": "Heritage Unisex Jacket 2 ",
       "category": "Unisex",
       "id": 8,
-      "price": 850,
+      "price": 849.99,
       "image": "/images/uploads/jacketyellow.jpg"
     },
     {
       "id": 565,
       "name": "Head wraps ",
       "category": "Women",
-      "price": 400,
+      "price": 399.99,
       "description": "African Print Notice:\nDue to fabric availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
       "image": "/images/uploads/1000750096.jpg"
     }
