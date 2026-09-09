@@ -272,7 +272,13 @@
       "price": 399.99,
       "description": "African Print Notice: Due to fabrick availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
       "image": "/images/uploads/1000750096.jpg",
-      "category": "Women"
+      "category": "Women",
+      "sizes": [
+        {
+          "size": "All sizes",
+          "stock": 6
+        }
+      ]
     }
   ]
 }
