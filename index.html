@@ -139,7 +139,9 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const money=n=>'R '+Number(n||0).toLocaleString('en-ZA',{minimumFractionDigits:2,maximumFractionDigits:2});
 function openModal(id){document.getElementById(id).classList.add('open');if(id==='cartModal')renderCart();if(id==='accountModal')renderOrders();}
 function closeModal(id){document.getElementById(id).classList.remove('open')}
-function stockFor(p,size){return p.sizes.find(s=>s.size===size)?.stock||0}
+
+function stockFor(p,size){return (Array.isArray(p.sizes)?p.sizes:[]).find(s=>s.size===size)?.stock||0}
+
 function renderProducts(){
  const q=document.getElementById('search').value.trim().toLowerCase(),cat=document.getElementById('category').value;
  const list=state.products.filter(p=>(!q||p.name.toLowerCase().includes(q)||p.description.toLowerCase().includes(q))&&(!cat||p.category===cat));
@@ -147,11 +149,17 @@ function renderProducts(){
  if(!list.length){grid.innerHTML='<div class="empty">No products found.</div>';return}
  grid.innerHTML=list.map(p=>`<article class="card"><div class="pic">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}" style="width:100%;height:100%;object-fit:cover">`:''}<span class="badge">${esc(p.category)}</span></div><div class="info"><h3>${esc(p.name)}</h3><div class="price">${money(p.price)}</div><p class="muted">${esc(p.description)}</p><div class="actions"><button class="primary" onclick="viewProduct(${p.id})">VIEW / BUY</button></div></div></article>`).join('');
 }
+
 function viewProduct(id){
  const p=state.products.find(x=>x.id===id);if(!p)return;
- document.getElementById('productDetail').innerHTML=`<h2>${esc(p.name)}</h2><div class="price">${money(p.price)}</div><p>${esc(p.description)}</p><h4>Choose size</h4><div class="size-row">${p.sizes.map(s=>`<button class="size ${s.stock<=0?'disabled':''}" ${s.stock<=0?'disabled':''} onclick="addToCart(${p.id},'${esc(s.size)}')">${esc(s.size)}${s.stock<=0?' — sold out':''}</button>`).join('')}</div><p class="muted">Available stock is shown per size.</p>`;
+ const sizes=Array.isArray(p.sizes)?p.sizes:[];
+ const sizeHtml=sizes.length
+   ? sizes.map(s=>`<button class="size ${s.stock<=0?'disabled':''}" ${s.stock<=0?'disabled':''} onclick="addToCart(${p.id},'${esc(s.size)}')">${esc(s.size)}${s.stock<=0?' — sold out':''}</button>`).join('')
+   : '<p class="muted">No sizes available for this product yet.</p>';
+ document.getElementById('productDetail').innerHTML=`<h2>${esc(p.name)}</h2><div class="price">${money(p.price)}</div><p>${esc(p.description)}</p><h4>Choose size</h4><div class="size-row">${sizeHtml}</div><p class="muted">Available stock is shown per size.</p>`;
  openModal('productModal');
 }
+
 function addToCart(productId,size){
  const p=state.products.find(x=>x.id===productId),available=stockFor(p,size);if(!available)return;
  const item=state.cart.find(x=>x.productId===productId&&x.size===size);
