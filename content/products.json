@@ -68,7 +68,17 @@
       "id": 17,
       "price": 799.9,
       "description": "African Print Fabric — 6m",
-      "image": "/images/uploads/fabrics.jpg"
+      "image": "/images/uploads/fabrics.jpg",
+      "sizes": [
+        {
+          "size": "6m",
+          "stock": 10
+        },
+        {
+          "size": "5 Yards ",
+          "stock": 10
+        }
+      ]
     },
     {
       "id": 3,
@@ -116,7 +126,17 @@
       "id": 11,
       "category": "Women",
       "price": 499.99,
-      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing."
+      "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.",
+      "sizes": [
+        {
+          "size": "S",
+          "stock": 8
+        },
+        {
+          "size": "M",
+          "stock": 6
+        }
+      ]
     },
     {
       "name": "Kente-Inspired Wrap Skirt 3",
@@ -124,7 +144,17 @@
       "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.\n\nAfrican Print Notice:\nDue to fabric availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
       "price": 499.99,
       "id": 12,
-      "category": "Women"
+      "category": "Women",
+      "sizes": [
+        {
+          "size": "M",
+          "stock": 7
+        },
+        {
+          "size": "L",
+          "stock": 7
+        }
+      ]
     },
     {
       "name": "Kente-Inspired Wrap Skirt 4 ",
@@ -132,7 +162,17 @@
       "description": "Kente-Inspired Wrap Skirt ",
       "category": "Women",
       "id": 16,
-      "image": "/images/uploads/img-20260831-wa0006.jpg"
+      "image": "/images/uploads/img-20260831-wa0006.jpg",
+      "sizes": [
+        {
+          "size": "S",
+          "stock": 5
+        },
+        {
+          "size": "M",
+          "stock": 5
+        }
+      ]
     },
     {
       "id": 6,
@@ -184,7 +224,25 @@
       "price": 849.99,
       "image": "/images/uploads/1000739267.jpg",
       "id": 7,
-      "description": "Heritage Unisex Jacket 2 "
+      "description": "Heritage Unisex Jacket 2 ",
+      "sizes": [
+        {
+          "size": "S",
+          "stock": 4
+        },
+        {
+          "size": "M",
+          "stock": 4
+        },
+        {
+          "size": "L",
+          "stock": 5
+        },
+        {
+          "size": "XL",
+          "stock": 5
+        }
+      ]
     },
     {
       "name": "Heritage Unisex Jacket  3",
@@ -192,15 +250,21 @@
       "category": "Unisex",
       "id": 8,
       "price": 849.99,
-      "image": "/images/uploads/jacketyellow.jpg"
-    },
-    {
-      "id": 565,
-      "name": "Head wraps ",
-      "category": "Women",
-      "price": 399.99,
-      "description": "African Print Notice:\nDue to fabric availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
-      "image": "/images/uploads/1000750096.jpg"
+      "image": "/images/uploads/jacketyellow.jpg",
+      "sizes": [
+        {
+          "size": "S",
+          "stock": 11
+        },
+        {
+          "size": "M",
+          "stock": 8
+        },
+        {
+          "size": "L",
+          "stock": 6
+        }
+      ]
     }
   ]
 }
