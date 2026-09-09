@@ -4,18 +4,10 @@
       "id": 1,
       "name": "Lubilanji Heritage Dress",
       "category": "Women",
-      "price": 1450,
+      "price": 1800,
       "description": "A contemporary statement dress inspired by African pattern traditions.",
       "image": "/images/uploads/reddress.jpg",
       "sizes": [
-        {
-          "size": "S",
-          "stock": 5
-        },
-        {
-          "size": "M",
-          "stock": 7
-        },
         {
           "size": "L",
           "stock": 4
@@ -56,7 +48,7 @@
       "id": 10,
       "name": "African Print Fabric — 6m",
       "category": "Fabrics",
-      "price": 720,
+      "price": 800,
       "description": "Six metres of vibrant print fabric for tailoring and creative projects.",
       "image": "/images/uploads/1000739343.jpg",
       "sizes": [
@@ -74,7 +66,7 @@
       "name": "African Print Fabric — 6m",
       "category": "Fabrics",
       "id": 17,
-      "price": 720,
+      "price": 800,
       "description": "African Print Fabric — 6m",
       "image": "/images/uploads/fabrics.jpg"
     },
@@ -130,7 +122,7 @@
       "name": "Kente-Inspired Wrap Skirt 3",
       "image": "/images/uploads/wrapgreen.jpg",
       "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.\n\nAfrican Print Notice:\nDue to fabric availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
-      "price": 980,
+      "price": 500,
       "id": 12,
       "category": "Women"
     },
@@ -146,14 +138,10 @@
       "id": 6,
       "name": "Kente-Inspired Wrap Skirt 5",
       "category": "Women",
-      "price": 980,
+      "price": 500,
       "description": "A flowing wrap silhouette with vibrant cultural-inspired detailing.\n\nAfrican Print Notice:\nDue to fabric availability and manufacturer stock, the print pattern and placement may vary slightly from the product image shown. Each item is unique, while the overall design and colour scheme remain consistent.",
       "image": "/images/uploads/wrap5.jpg",
       "sizes": [
-        {
-          "size": "S",
-          "stock": 4
-        },
         {
           "size": "M",
           "stock": 6
@@ -193,7 +181,7 @@
     {
       "name": "Heritage Unisex Jacket 2 ",
       "category": "Unisex",
-      "price": 1290,
+      "price": 850,
       "image": "/images/uploads/1000739267.jpg",
       "id": 7,
       "description": "Heritage Unisex Jacket 2 "
@@ -203,7 +191,7 @@
       "description": "Heritage Unisex Jacket 2 ",
       "category": "Unisex",
       "id": 8,
-      "price": 1290,
+      "price": 850,
       "image": "/images/uploads/jacketyellow.jpg"
     },
     {
